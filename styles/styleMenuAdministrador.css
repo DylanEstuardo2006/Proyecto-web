@@ -1,0 +1,81 @@
+body
+{
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+     height: 100%;            /* Hace que el body ocupe toda la pantalla */
+     margin: 0;               /* Elimina márgenes por defecto */
+    display: flex;           /* Activa flexbox */
+    flex-direction: column;  /* Ordena header, main y footer en columna */
+}
+header {
+  background-color: #00883E;
+  padding: 8px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+  height: 110px; /* define altura fija */
+}
+
+nav ul 
+{
+  
+    list-style: none; /*Quita los estilos de lista */
+   padding: 0;   /*Elimina el Padding*/
+   display: flex; /*activa Flexbox para alinear elementos en fila*/
+   justify-content: center; /*Centra el contenido */
+   gap: 20px; /*Genera un espacio uniforme entre los elementos*/
+   transition: background-color 3s; /*Generamos una pequeña transición para que se vea un poco mejor */
+}
+nav a 
+{
+   font-size: 17px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+nav a:hover 
+{ 
+  background-color: #005f27;
+  border-radius: 5px;
+}
+header img
+{
+    width: 120px;
+    height: 100px;
+}
+header h1
+{
+     font-size: 40px;
+}
+main {                   /* ocupa el 2/3 del espacio disponible */
+  display: flex;
+  flex-direction: column;       /* apila secciones una debajo de otra */
+  gap: 20px;     
+  max-width: 1200px;         /* espacio entre las secciones */
+}
+/* Cada sección (Noticias y Review) */
+section {
+  margin: 20px;
+  flex: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+/* Aside (lado derecho) */
+aside 
+{
+  flex: 1;                        /* ocupa la mitad derecha */
+  background-color: #eaeaea;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
