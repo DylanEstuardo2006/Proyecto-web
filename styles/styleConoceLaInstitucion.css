@@ -1,0 +1,156 @@
+body
+{
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #00883E;
+    padding: 8px 25px;
+    display: block;
+    /* position: fixed; <--- Esta madre hace que el header se quede pegado arriba*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+    height: 120px;
+}
+
+.logo-container {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100px;
+}
+
+header h1 {
+    display: inline-block;
+    font-size: 30px;
+    margin-left: 60px;
+    vertical-align: middle;
+    padding: 0 20px;
+}
+div img 
+{
+    border-radius: 20px;
+    margin-left: 20%;
+    vertical-align: middle;
+    height: 400px;
+    width: 500px;
+}
+
+nav 
+{
+    float: right;
+}
+/* Estilos para la imagen del banner */
+.content
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content img 
+{
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+nav 
+{
+    margin-top: 35px;
+}
+nav ul 
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    transition: background-color 0.3s;
+}
+
+nav a 
+{
+    font-size: 22px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+nav a:hover 
+{ 
+    background-color: #005f27;
+    border-radius: 5px;
+}
+
+header img
+{
+    width: 120px;
+    height: 100px;
+}
+
+main 
+{
+    margin-left: 120px;
+    padding-top: 10px;
+    flex: 1;
+    flex-direction: column;
+    gap: 20px;
+}
+
+section 
+{  
+    margin-top: 10px;
+    padding: 10px;
+    color: black;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+aside {
+    width: 30%;
+    margin-top: 20px;
+    color: black;
+    background-color: #eaeaea;
+    padding: 20px;
+    border-radius: 10px;
+     max-height: 300px; /*  Ajusta el alto */
+  overflow-y: auto;  
+}
+
+
+.container-body {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    flex: 1;
+}
+
+.ulValores
+{
+    margin-left: 10px;
+    padding: 0;
+    list-style-type: disc;
+}
+
+footer 
+{
+    text-align: center;
+    padding: 8px;
+    background-color: #333;
+    color: white;
+    bottom: 0;
+    width: 100%;
+}

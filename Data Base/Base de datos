@@ -2,12 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 10, 2025 at 08:32 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.1.25
-CREATE DATABASE IF NOT EXISTS `mantenimientocomputo`;
-USE `mantenimientocomputo`;
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-11-2025 a las 22:50:26
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,37 +18,58 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mantenimientocomputo`
+-- Base de datos: `mantenimientocomputo`
 --
+CREATE DATABASE IF NOT EXISTS `mantenimientocomputo` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `mantenimientocomputo`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dispositivos`
+-- Estructura de tabla para la tabla `dispositivos`
 --
 
-CREATE TABLE `dispositivos` (
-  `idDispositivo` int(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `dispositivos` (
+  `idDispositivo` int(20) NOT NULL AUTO_INCREMENT,
   `idLaboratorio` int(20) DEFAULT NULL,
   `idModelo` int(20) DEFAULT NULL,
   `idTipoDispositivo` int(20) DEFAULT NULL,
   `nombreDispositivo` varchar(30) DEFAULT NULL,
-  `numeroInventario` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `numeroInventario` bigint(10) DEFAULT NULL,
+  PRIMARY KEY (`idDispositivo`),
+  KEY `fk_dispositivo_laboratorio` (`idLaboratorio`),
+  KEY `fk_dispositivo_modelos` (`idModelo`),
+  KEY `fk_dispositivo_tipoDispositivo` (`idTipoDispositivo`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `dispositivos`
+--
+
+INSERT INTO `dispositivos` (`idDispositivo`, `idLaboratorio`, `idModelo`, `idTipoDispositivo`, `nombreDispositivo`, `numeroInventario`) VALUES
+(1, 1, 6, 7, 'LabD1MSIModern156', 55513457890),
+(2, 2, 13, 7, 'LabD2HpEliteBook13', 55214209087),
+(3, 1, 13, 7, 'LabD1HpEliteBook13', 55617268290),
+(4, 3, 12, 7, 'LabD3VictusbyHp12', 55572817829),
+(5, 1, 11, 7, 'LabD1OmenByHp11', 55827819283),
+(6, 2, 5, 7, 'LabD2MSIStealth16Studio5', 55671887627),
+(7, 4, 2, 7, 'LabD4MSIKatana2', 55918290322),
+(8, 1, 4, 7, 'LabD1MSICyborg15-4', 55529838172);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laboratorios`
+-- Estructura de tabla para la tabla `laboratorios`
 --
 
-CREATE TABLE `laboratorios` (
-  `idLaboratorio` int(20) NOT NULL,
-  `laboratorios` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE IF NOT EXISTS `laboratorios` (
+  `idLaboratorio` int(20) NOT NULL AUTO_INCREMENT,
+  `laboratorios` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`idLaboratorio`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `laboratorios`
+-- Volcado de datos para la tabla `laboratorios`
 --
 
 INSERT INTO `laboratorios` (`idLaboratorio`, `laboratorios`) VALUES
@@ -62,30 +81,17 @@ INSERT INTO `laboratorios` (`idLaboratorio`, `laboratorios`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mantenimientos`
+-- Estructura de tabla para la tabla `marca`
 --
 
-CREATE TABLE `mantenimientos` (
-  `idMantenimiento` int(20) NOT NULL,
-  `idOrdenDeTrabajo` int(20) DEFAULT NULL,
-  `observaciones` varchar(400) DEFAULT NULL,
-  `estado` enum('programado','realizado') DEFAULT NULL,
-  `fechaMantenimiento` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `marca` (
+  `idMarcas` int(20) NOT NULL AUTO_INCREMENT,
+  `marcas` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`idMarcas`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Table structure for table `marca`
---
-
-CREATE TABLE `marca` (
-  `idMarcas` int(20) NOT NULL,
-  `marcas` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `marca`
+-- Volcado de datos para la tabla `marca`
 --
 
 INSERT INTO `marca` (`idMarcas`, `marcas`) VALUES
@@ -101,17 +107,19 @@ INSERT INTO `marca` (`idMarcas`, `marcas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modelos`
+-- Estructura de tabla para la tabla `modelos`
 --
 
-CREATE TABLE `modelos` (
-  `idModelo` int(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `modelos` (
+  `idModelo` int(20) NOT NULL AUTO_INCREMENT,
   `modelos` varchar(30) DEFAULT NULL,
-  `idMarca` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `idMarca` int(20) DEFAULT NULL,
+  PRIMARY KEY (`idModelo`),
+  KEY `idMarca` (`idMarca`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `modelos`
+-- Volcado de datos para la tabla `modelos`
 --
 
 INSERT INTO `modelos` (`idModelo`, `modelos`, `idMarca`) VALUES
@@ -132,44 +140,70 @@ INSERT INTO `modelos` (`idModelo`, `modelos`, `idMarca`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordendetrabajo`
+-- Estructura de tabla para la tabla `ordendetrabajo`
 --
 
-CREATE TABLE `ordendetrabajo` (
-  `idOrdenDeTrabajo` int(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ordendetrabajo` (
+  `idOrdenDeTrabajo` int(20) NOT NULL AUTO_INCREMENT,
   `idTipoMantenimiento` int(20) DEFAULT NULL,
-  `idDispositivo` int(20) DEFAULT NULL,
   `idUsuario` int(20) DEFAULT NULL,
   `estado` enum('aceptado','espera') DEFAULT NULL,
   `realizadoMantenimiento` enum('realizado','proceso') DEFAULT NULL,
   `insumos` varchar(400) DEFAULT NULL,
-  `horasHombres` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `horasHombres` varchar(30) DEFAULT NULL,
+  `fechaDeCreacion` date DEFAULT NULL,
+  PRIMARY KEY (`idOrdenDeTrabajo`),
+  KEY `fk_usuarios_ordendeTrabajo` (`idUsuario`),
+  KEY `fk_tipoMantenimiento_ordendetrabajo` (`idTipoMantenimiento`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ordendetrabajo`
+--
+
+INSERT INTO `ordendetrabajo` (`idOrdenDeTrabajo`, `idTipoMantenimiento`, `idUsuario`, `estado`, `realizadoMantenimiento`, `insumos`, `horasHombres`, `fechaDeCreacion`) VALUES
+(13, 1, 1, 'espera', 'proceso', 'Se necesitaran 100 ml de alcohol, algodón ', '10', '2025-11-13'),
+(14, 1, 1, 'espera', 'proceso', 'Se necesitaran 100 ml de alcohol, algodón ', '10', '2025-11-14'),
+(15, 1, 1, 'espera', 'proceso', 'Se necesitara espuma limpiadora de 400g y una toalla para limpiar las superficies', '20', '2025-11-14'),
+(16, 1, 2, 'espera', 'proceso', 'Se necesitara de alcohol para la limpieza de los dispositivos', '10', '2025-11-14');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orden_dispositivos`
+-- Estructura de tabla para la tabla `orden_dispositivos`
 --
 
-CREATE TABLE `orden_dispositivos` (
+CREATE TABLE IF NOT EXISTS `orden_dispositivos` (
   `idOrdenDeTrabajo` int(20) DEFAULT NULL,
-  `idDispositivos` int(20) DEFAULT NULL
+  `idDispositivo` int(20) DEFAULT NULL,
+  KEY `fk_idOrden_IdOrdeDispositivos` (`idOrdenDeTrabajo`),
+  KEY `fk_idDispositivos_IdOrdeDispositivos` (`idDispositivo`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `orden_dispositivos`
+--
+
+INSERT INTO `orden_dispositivos` (`idOrdenDeTrabajo`, `idDispositivo`) VALUES
+(NULL, 1),
+(NULL, 3),
+(16, 2),
+(16, 6);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Estructura de tabla para la tabla `roles`
 --
 
-CREATE TABLE `roles` (
-  `idRoles` int(20) NOT NULL,
-  `roles` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `idRoles` int(20) NOT NULL AUTO_INCREMENT,
+  `roles` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`idRoles`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `roles`
+-- Volcado de datos para la tabla `roles`
 --
 
 INSERT INTO `roles` (`idRoles`, `roles`) VALUES
@@ -179,16 +213,17 @@ INSERT INTO `roles` (`idRoles`, `roles`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipodispositivo`
+-- Estructura de tabla para la tabla `tipodispositivo`
 --
 
-CREATE TABLE `tipodispositivo` (
-  `idTipoDispositivo` int(20) NOT NULL,
-  `tipoDispositivo` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE IF NOT EXISTS `tipodispositivo` (
+  `idTipoDispositivo` int(20) NOT NULL AUTO_INCREMENT,
+  `tipoDispositivo` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`idTipoDispositivo`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tipodispositivo`
+-- Volcado de datos para la tabla `tipodispositivo`
 --
 
 INSERT INTO `tipodispositivo` (`idTipoDispositivo`, `tipoDispositivo`) VALUES
@@ -203,16 +238,17 @@ INSERT INTO `tipodispositivo` (`idTipoDispositivo`, `tipoDispositivo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipomantenimiento`
+-- Estructura de tabla para la tabla `tipomantenimiento`
 --
 
-CREATE TABLE `tipomantenimiento` (
-  `idTipoMantenimiento` int(11) NOT NULL,
-  `tipoMantenimiento` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE IF NOT EXISTS `tipomantenimiento` (
+  `idTipoMantenimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `tipoMantenimiento` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`idTipoMantenimiento`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tipomantenimiento`
+-- Volcado de datos para la tabla `tipomantenimiento`
 --
 
 INSERT INTO `tipomantenimiento` (`idTipoMantenimiento`, `tipoMantenimiento`) VALUES
@@ -222,22 +258,24 @@ INSERT INTO `tipomantenimiento` (`idTipoMantenimiento`, `tipoMantenimiento`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `idUsuario` int(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `idUsuario` int(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) DEFAULT NULL,
   `apellidoPaterno` varchar(35) DEFAULT NULL,
   `apellidoMaterno` varchar(35) DEFAULT NULL,
   `matricula` int(10) DEFAULT NULL,
   `contrasenia` varchar(20) DEFAULT NULL,
   `telefono` bigint(10) DEFAULT NULL,
-  `idRoles` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `idRoles` int(20) DEFAULT NULL,
+  PRIMARY KEY (`idUsuario`),
+  KEY `fk_usuarios_roles` (`idRoles`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellidoPaterno`, `apellidoMaterno`, `matricula`, `contrasenia`, `telefono`, `idRoles`) VALUES
@@ -245,151 +283,11 @@ INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellidoPaterno`, `apellidoMater
 (2, 'Yessica', 'Palacios', 'Hernández', 20240985, 'yessicaHernandez', 7712420954, 1);
 
 --
--- Indexes for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Indexes for table `dispositivos`
---
-ALTER TABLE `dispositivos`
-  ADD PRIMARY KEY (`idDispositivo`),
-  ADD KEY `fk_dispositivo_laboratorio` (`idLaboratorio`),
-  ADD KEY `fk_dispositivo_modelos` (`idModelo`),
-  ADD KEY `fk_dispositivo_tipoDispositivo` (`idTipoDispositivo`);
-
---
--- Indexes for table `laboratorios`
---
-ALTER TABLE `laboratorios`
-  ADD PRIMARY KEY (`idLaboratorio`);
-
---
--- Indexes for table `mantenimientos`
---
-ALTER TABLE `mantenimientos`
-  ADD PRIMARY KEY (`idMantenimiento`);
-
---
--- Indexes for table `marca`
---
-ALTER TABLE `marca`
-  ADD PRIMARY KEY (`idMarcas`);
-
---
--- Indexes for table `modelos`
---
-ALTER TABLE `modelos`
-  ADD PRIMARY KEY (`idModelo`),
-  ADD KEY `idMarca` (`idMarca`);
-
---
--- Indexes for table `ordendetrabajo`
---
-ALTER TABLE `ordendetrabajo`
-  ADD PRIMARY KEY (`idOrdenDeTrabajo`);
-
---
--- Indexes for table `orden_dispositivos`
---
-ALTER TABLE `orden_dispositivos`
-  ADD KEY `fk_idOrden_IdOrdeDispositivos` (`idOrdenDeTrabajo`),
-  ADD KEY `fk_idDispositivos_IdOrdeDispositivos` (`idDispositivos`);
-
---
--- Indexes for table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`idRoles`);
-
---
--- Indexes for table `tipodispositivo`
---
-ALTER TABLE `tipodispositivo`
-  ADD PRIMARY KEY (`idTipoDispositivo`);
-
---
--- Indexes for table `tipomantenimiento`
---
-ALTER TABLE `tipomantenimiento`
-  ADD PRIMARY KEY (`idTipoMantenimiento`);
-
---
--- Indexes for table `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD KEY `fk_usuarios_roles` (`idRoles`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `dispositivos`
---
-ALTER TABLE `dispositivos`
-  MODIFY `idDispositivo` int(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `laboratorios`
---
-ALTER TABLE `laboratorios`
-  MODIFY `idLaboratorio` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `mantenimientos`
---
-ALTER TABLE `mantenimientos`
-  MODIFY `idMantenimiento` int(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `marca`
---
-ALTER TABLE `marca`
-  MODIFY `idMarcas` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `modelos`
---
-ALTER TABLE `modelos`
-  MODIFY `idModelo` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `ordendetrabajo`
---
-ALTER TABLE `ordendetrabajo`
-  MODIFY `idOrdenDeTrabajo` int(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `idRoles` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `tipodispositivo`
---
-ALTER TABLE `tipodispositivo`
-  MODIFY `idTipoDispositivo` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tipomantenimiento`
---
-ALTER TABLE `tipomantenimiento`
-  MODIFY `idTipoMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `dispositivos`
+-- Filtros para la tabla `dispositivos`
 --
 ALTER TABLE `dispositivos`
   ADD CONSTRAINT `fk_dispositivo_laboratorio` FOREIGN KEY (`idLaboratorio`) REFERENCES `laboratorios` (`idLaboratorio`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -397,20 +295,27 @@ ALTER TABLE `dispositivos`
   ADD CONSTRAINT `fk_dispositivo_tipoDispositivo` FOREIGN KEY (`idTipoDispositivo`) REFERENCES `tipodispositivo` (`idTipoDispositivo`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `modelos`
+-- Filtros para la tabla `modelos`
 --
 ALTER TABLE `modelos`
   ADD CONSTRAINT `modelos_ibfk_1` FOREIGN KEY (`idMarca`) REFERENCES `marca` (`idMarcas`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `orden_dispositivos`
+-- Filtros para la tabla `ordendetrabajo`
+--
+ALTER TABLE `ordendetrabajo`
+  ADD CONSTRAINT `fk_tipoMantenimiento_ordendetrabajo` FOREIGN KEY (`idTipoMantenimiento`) REFERENCES `tipomantenimiento` (`idTipoMantenimiento`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_usuarios_ordendeTrabajo` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `orden_dispositivos`
 --
 ALTER TABLE `orden_dispositivos`
-  ADD CONSTRAINT `fk_idDispositivos_IdOrdeDispositivos` FOREIGN KEY (`idDispositivos`) REFERENCES `dispositivos` (`idDispositivo`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `fk_idDispositivos_IdOrdeDispositivos` FOREIGN KEY (`idDispositivo`) REFERENCES `dispositivos` (`idDispositivo`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `fk_idOrden_IdOrdeDispositivos` FOREIGN KEY (`idOrdenDeTrabajo`) REFERENCES `ordendetrabajo` (`idOrdenDeTrabajo`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Constraints for table `usuarios`
+-- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `fk_usuarios_roles` FOREIGN KEY (`idRoles`) REFERENCES `roles` (`idRoles`) ON DELETE SET NULL ON UPDATE CASCADE;

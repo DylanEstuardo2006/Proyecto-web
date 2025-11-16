@@ -1,0 +1,37 @@
+body 
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 20px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;               /* NECESARIO */
+    justify-content: center;     /* Centra horizontal */
+    align-items: center;         /* Centra vertical */
+}
+main
+{
+    margin:20px;
+    padding: 10px;
+    max-width: 800px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
+
+button 
+{
+    display: block;          /* hace que el botón pueda centrarse */
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #00883E;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+     margin: 20px auto 0;     /* auto centrado horizontal */
+}

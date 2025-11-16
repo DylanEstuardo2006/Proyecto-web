@@ -26,9 +26,11 @@ session_start();
        <p> Bienvenido <?php echo $nombreUsuario?></p>
        <nav>
          <ul>
-         <li><a href ="ordenDeTrabajo.php">Orden de trabajo</a></li>
-         <li><a href ="Registros">Registros</a></li>
-         </ul>
+         <li><a href ="menuAdministrador">Menú Administrador</a></li>
+         <li><a href ="CRUDS/crudUsuario/formUsuarios.php">Usuarios</a></li>
+         <li><a href ="CRUDS/crudDispositivos/formDispositivos.php">Orden de trabajo</a></li>
+        
+        </ul>
        </nav>
     </header>
     <main>

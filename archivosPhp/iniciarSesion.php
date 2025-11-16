@@ -4,7 +4,7 @@
 
    if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
-
+     
    $usuario = $_POST['matricula'];
    $contrasenia = $_POST['contrasenia'];
    $tipoUsuario = $_POST['tipoUsuario'];
@@ -28,11 +28,13 @@
         $_SESSION['nombre'] = $filas['nombre'];
         $_SESSION['idRoles'] = $filas['idRoles'];
         $_SESSION['idUsuario'] = $filas['idUsuario'];
-    
-        if($filas['idRoles'] == 1)
-        {
-              header("Location: menuAdministrador.php");
-              exit();
+       
+          $_SESSION['verificarAdministrador'] = 1;
+     
+        if($filas['idRoles'] == 1 && $_SESSION['verificarAdministrador'] == 1)
+        {   
+          header("Location: menuAdministrador.php");
+          exit();
         } 
         elseif($filas['idRoles'] == 2)
         {

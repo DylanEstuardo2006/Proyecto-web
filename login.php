@@ -9,9 +9,13 @@
 <body>
     <header>
             <img src ="imagenes/imagenLogoUthh/logoUthh.png" alt="Logo ITL" class="logo">
+       <h1 class= "title">Login</h1>
            <nav>
                 <ul>
-                    <li><a href = "index.html">Menu Principal</a></li>
+                    <li><a href="index.html">Menu Principal</a></li>
+                    <li><a href="html/filosofiaInstitucional.html">Filosofia Escolar</a></li>
+                    <li><a href="html/conoceInstitucion.html">Conoce la Institución</a></li>
+                    <li><a href="html/novedades.html">Novedades</a></li>
                 </ul>
           </nav>
    </header>
@@ -27,8 +31,14 @@
                     <label for="username">Tipo de usuario:</label>
                      <select name = "tipoUsuario">
                         <option value = 0>Elige una opción</option>
-                        <option value= 1>Administradores</option>  
-                        <option value= 2 >Tecnicos</option>
+                          <?php
+                           $tipos = $conn->query("SELECT * FROM roles");   
+
+                           while($row = $tipos->fetch_assoc())
+                           {
+                           echo "<option value='{$row['idRoles']}'>{$row['roles']}</option>";
+                           }
+                           ?>
                     </select>
                     <input type="submit" class = "button" value= "Iniciar Sesión">
                   </form>

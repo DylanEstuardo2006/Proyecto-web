@@ -1,0 +1,283 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 20px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00883E;
+    width: 100%;
+    color: white;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-space {
+    width: 170px;
+    height: 75px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo-space .logo {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.header-title {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+a:hover{
+    background-color: #005f27;
+    border-radius: 5px;
+}
+
+.header-back 
+{
+    display: flex;
+    text-align: right;
+    padding-right: 40px;
+    align-items: center;
+}
+.header-back .links {
+    display: flex;
+    gap: 20px;
+}
+.header-back a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 8px 15px;
+    color: white;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+main 
+{
+    font-size: 18px;
+    padding: 20px;
+    width: 90%;
+    max-width: 550px;
+    margin: 120px auto 80px;
+    background-color: #eaeaea;
+   border-radius: 15px;
+}
+.title 
+{
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.apellidos
+{
+  display: flex;
+  gap: 10px
+}
+.nombre input 
+{
+    display: block;
+    width: 45%;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-top: 4px;
+    margin-left: 10px;
+}
+.nombre strong
+{ 
+    margin-left: 10px;
+    width: 10%;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+.apellidoPaterno, .apellidoMaterno
+{
+  flex: 1;
+  margin: 5px;
+  padding: 5px;
+}
+.apellidoPaterno input , .apellidoMaterno input  
+{
+    width: 100%;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+.apellidoPaterno strong, .apellidoMaterno strong 
+{
+    width: 100%;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+.cuenta
+{
+  display: flex;
+  gap: 10px
+}
+.matricula, .contrasenia 
+{
+    flex: 1;
+    margin: 5px;
+    padding: 5px;
+}
+.matricula input , .contrasenia input  
+{
+    width: 100%;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+.matricula strong, .contrasenia strong 
+{
+    width: 100%;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+
+.button 
+{
+    display: block;
+    margin: 20px auto 0 auto;
+    background-color: #00883E;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+     background-color: #005f27;
+}
+
+
+.selectTipoMantenimiento {
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 5px;
+}
+.conocerUsuario
+{
+    display: flex;
+    gap: 10px;
+}
+.telefono, .tipoUsuario
+{
+    flex: 1;
+    margin: 5px;
+    padding: 5px;
+} 
+.telefono input 
+{
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.tipoUsuario select {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+
+.boton {
+    text-align: center;
+}
+
+footer {
+   background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 18px;
+    }
+    
+    .logo-space {
+        width: 80px;
+        height: 40px;
+        font-size: 12px;
+    }
+    
+    .header-back {
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+    }
+    
+    header {
+        padding: 10px 15px;
+    }
+    
+    .header-title {
+        font-size: 16px;
+    }
+    
+    .logo-space {
+        width: 60px;
+        height: 35px;
+        font-size: 10px;
+    }
+    
+    .header-back a {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
