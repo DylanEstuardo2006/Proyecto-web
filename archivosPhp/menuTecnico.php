@@ -1,20 +1,17 @@
 <?php
 session_start();
 
- if($_SESSION['verificarAdministrador'] == 1)
+ if($_SESSION['verificarAdministrador'] == 2)
  {
-  
+    
  }
- else 
+ else
  {
     header("Location: ../login.php");
     exit();
  }
-  $nombreUsuario = $_SESSION['nombre'];
-  
+ $nombreUsuario = $_SESSION['nombre'];
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,10 +28,9 @@ session_start();
        <h1> Bienvenido <?php echo $nombreUsuario?> </h1>
        <nav>
          <ul>
+         <li><a href ="mapaDeSitioTecnico.php">Mapa de Sitio</a></li>
          <li><a href ="cerrarSesion.php">Cerrar Sesión</a></li>
-         <li><a href ="mapaDeSitioAdministrador.php">Mapa De Sitio</a></li>
-         <li><a href ="ordenDeTrabajo.php">Orden de trabajo</a></li>
-         <li><a href ="registrosAdministrador.php">Registros</a></li>    
+         <li><a href ="Registros">Registros</a></li>    
          </ul>
        </nav>
     </header>
@@ -44,7 +40,6 @@ session_start();
 <footer>
   <p>
  Derechos de Autor &#169; 2025 Mantenimientos de Computo. Todos los derechos reservado.
-
 </p>
  
 </footer>

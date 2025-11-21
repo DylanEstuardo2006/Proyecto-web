@@ -28,23 +28,18 @@
         $_SESSION['nombre'] = $filas['nombre'];
         $_SESSION['idRoles'] = $filas['idRoles'];
         $_SESSION['idUsuario'] = $filas['idUsuario'];
-       
-          $_SESSION['verificarAdministrador'] = 1;
+        $_SESSION['verificarAdministrador'] = $filas['idRoles'];
      
         if($filas['idRoles'] == 1 && $_SESSION['verificarAdministrador'] == 1)
         {   
           header("Location: menuAdministrador.php");
           exit();
         } 
-        elseif($filas['idRoles'] == 2)
+        elseif($filas['idRoles'] == 2 && $_SESSION['verificarAdministrador'] == 2) 
         {
-            header("Location: ../admin/panelAdmin.php");
-         } 
-         elseif($filas['idRoles'] == 3)
-         {
-              header("Location: ../tecnico/.php");
-         }
-     
+            header("Location: menuTecnico.php");
+            exit();
+        } 
   }
   else
   {

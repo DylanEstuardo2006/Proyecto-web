@@ -3,7 +3,11 @@
 include_once 'conexion.php';
 session_start();
 
- if($_SESSION['verificarAdministrador'] != 1)
+ if($_SESSION['verificarAdministrador'] == 1)
+ {
+    
+ }
+ else
  {
     header("Location: ../login.php");
     exit();
@@ -15,8 +19,9 @@ $result = null;
 
 if(isset($_GET['idLaboratorio']) && $_GET['idLaboratorio'] != "") 
 {
-  
-    $idLaboratorio = $_GET['idLaboratorio'];
+  if($_GET['idOrden']  != 0)
+  {
+     $idLaboratorio = $_GET['idLaboratorio'];
     $idOrden = $_GET['idOrden'];
 
    $sql = "SELECT * FROM dispositivos WHERE idLaboratorio = ?";
@@ -29,6 +34,15 @@ if(isset($_GET['idLaboratorio']) && $_GET['idLaboratorio'] != "")
     {
         $verificar = true;
     }
+  } 
+  else
+  {
+      echo "<script>
+                 alert('❌ No se ha proporcionado una Orden de Trabajo válida.');
+                 window.location='seleccionarLaboratorio.php';
+               </script>";
+         exit();
+  }
 }   
 else 
 {
@@ -44,10 +58,19 @@ else
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dispositivos</title>
+    <title>Listar dispositivos</title>
     <link rel ="stylesheet" href="../styles/styleListarDispositivos.css">
 </head>
 <body>
+   <header>
+        <div class="logo-space">
+          <img src="../imagenes/imagenlogoCarrera/imagenLogoCarrera.png" alt="Logo UTHH" class="logo">
+       </div>
+  <h3> <?php if($idOrden === null){ echo 'No se ha creado una Orden de Trabajo'; }else { echo 'Selecciona los dispositivos para la orden #'. $idOrden;}  ?></h3>
+       <div class ="header-back">
+          <a href="menuAdministrador.php">Menú Administrador</a>
+        </div>
+  </header>
     <main>
      <div id= "dispositivos-lista">  
         <h2>Selecciona los dispositivos para la orden #<?= $idOrden; ?></h2>
@@ -65,6 +88,7 @@ else
     </div> 
     </main>
 <footer>
+   <p>&copy; 2025 Mantenimientos de Equipos de Computo. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

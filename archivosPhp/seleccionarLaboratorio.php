@@ -1,6 +1,7 @@
 <?php 
   include_once 'conexion.php';   
    
+  $idOrden = null;
 
   if($_SERVER['REQUEST_METHOD'] == 'POST') 
   {
@@ -38,12 +39,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orden de Trabajo</title>
+    <link rel="stylesheet" href="../styles/styleSeleccionarLaboratorio.css">
 </head>
 <body>
-    <main>
         <header>
-           <h1>Selecciona el laboratorio para la orden #<?= $idOrden; ?></h1>
-         </header>
+        <div class="logo-space">
+          <img src="../imagenes/imagenlogoCarrera/imagenLogoCarrera.png" alt="Logo UTHH" class="logo">
+        </div>
+             <h3> <?php if($idOrden === null){ echo 'No se ha creado una Orden de Trabajo'; }else { echo 'Selecciona el laboratorio para la orden #'. $idOrden;}  ?></h3>
+         <div class="header-back">
+            <a href="ordenDeTrabajo.php">Regresar</a>
+        </div>
+        </header>
+     <main>
+        <section>
+          <h4>Selecciona el laboratorio:</h4>
          <form method = "get" action = "listarDispositivos.php">
             <select name= "idLaboratorio" required>
                 <option value = "">Selecciona un laboratorio</option>
@@ -54,9 +64,13 @@
                       }
                 ?>
             </select>
-            <input type="hidden" name="idOrden" value="<?= $idOrden; ?>">
+              <input type="hidden" name="idOrden" value="<?php echo ($idOrden === null) ? 0 : $idOrden; ?>">
             <button type="submit">Siguiente → Seleccionar Dispositivos</button>
-        </form>
-   </main>
+         </form>
+        </section>
+     </main>
+   <footer>
+    <p>&copy; 2024 Mantenimientos de Cómputo. Todos los derechos reservados.</p>
+   </footer>
 </body>
 </html>

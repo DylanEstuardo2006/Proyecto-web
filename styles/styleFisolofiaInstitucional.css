@@ -85,8 +85,12 @@ aside {
     background-color: #eaeaea;
     padding: 20px;
     border-radius: 10px;
-    height: 500px;
+    max-height: 1000px;
+    flex-shrink: 0; /* Para que NO se estire */
+    height: fit-content; /* Solo lo necesario */
 }
+
+
 .imagenInstitucion {
     width: 100%;
     max-width: 700px;      /* límite para que no se haga enorme */

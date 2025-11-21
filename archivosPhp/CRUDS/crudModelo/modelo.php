@@ -1,0 +1,192 @@
+<?php
+require_once "../../conexion.php"; // Conexión a la base de datos
+
+/* ----------------------- GUARDAR MODELO ----------------------- */
+if (isset($_POST["guardar"])) {
+    $nombreModelo = $_POST["modelo"];
+    $idMarca = $_POST["marca"];
+
+    if (!empty($nombreModelo) && !empty($idMarca)) {
+        $conn->query("INSERT INTO modelos (modelos, idMarca) VALUES ('$nombreModelo', '$idMarca')");
+    }
+}
+/* -----------------------se carga los modelo para que sean editados----------------------- */
+$idEditar = "";
+$modeloEditar = "";
+$marcaEditar = "";
+
+if (isset($_GET["actualizar"])) {
+    $idEditar = $_GET["actualizar"];
+
+    $busqueda = $conn->query("SELECT * FROM modelos WHERE idModelo = $idEditar");
+    $datos = $busqueda->fetch_assoc();
+
+    if ($datos) {
+        $modeloEditar = $datos["modelos"];
+        $marcaEditar = $datos["idMarca"];
+    }
+}
+
+/* ----------------------- se actualzan los modelos ----------------------- */
+if (isset($_POST["editar"])) {
+    $id = $_POST["idEditar"];
+    $modelo = $_POST["modelo"];
+    $marca = $_POST["marca"];
+
+   $conn->query("UPDATE modelos 
+                  SET modelos='$modelo', idMarca='$marca'
+                  WHERE idModelo=$id");
+
+    header("Location: modelo.php");
+    exit;
+}
+
+/* ----------------------- se condultan los modelos ----------------------- */
+$sql = "
+    SELECT 
+        modelos.idModelo, 
+        modelos.modelos AS nombreModelo, 
+        marca.marcas AS nombreMarca
+    FROM modelos
+    LEFT JOIN marca ON modelos.idMarca = marca.idMarcas
+";
+$resultado = $conn->query($sql);
+
+/* ----------------------- CONSULTAR MODELOS ----------------------- */
+$sql = "
+    SELECT 
+        modelos.idModelo, 
+        modelos.modelos AS nombreModelo, 
+        marca.marcas AS nombreMarca
+    FROM modelos
+    LEFT JOIN marca ON modelos.idMarca = marca.idMarcas
+";
+$resultado = $conn->query($sql);
+
+/* ----------------------- CONSULTAR MARCAS ----------------------- */
+$marcas = $conn->query("SELECT idMarcas, marcas FROM marca");
+
+/* ----------------------- ELIMINAR MODELO ----------------------- */
+if (isset($_GET["eliminar"])) {
+    $id = $_GET["eliminar"];
+    $conn->query("DELETE FROM modelos WHERE idModelo = $id");
+    header("Location: Modelos.php");
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Modelos</title>
+    <link rel="stylesheet" href="../../../styles/styleModelo.css">
+</head>
+<body>
+
+
+<header>
+    <div class="logo">
+            <img src="../../../imagenes/imagenLogoEmpresa/logoEmpresa.jpg" alt="Logo" />
+        </div>
+
+        <h1>REGISTRAR MODELO</h1>
+
+        <nav>
+             <a href="Mapa_de_sitio.php">MAPA DE SITIO</a>
+            <a href="MARCA.php">MARCA</a>
+            <a href="Dispositivos.php">DISPOSITIVOS</a>
+            <a href="Usuarios">USUARIOS</a>
+            <a href="Menu.php">MENU PRINCIPAL</a>
+        </nav>
+    
+</header>
+
+<main>
+
+    <!-- FORMULARIO -->
+    <section class="form-box">
+        <h2>Registrar Modelo</h2>
+
+       <form method="POST">
+    <input type="hidden" name="idEditar" value="<?= $idEditar ?>">
+
+    <label>Nombre del modelo:</label>
+    <input 
+        type="text" 
+        name="modelo" 
+        value="<?= $modeloEditar ?>" 
+        placeholder="Ingresa el nombre del modelo" 
+        required
+    >
+
+    <label>Marca:</label>
+    <select name="marca" required>
+        <option value="">Seleccione una marca</option>
+
+        <?php
+        $marcas2 = $conn->query("SELECT idMarcas, marcas FROM marca");
+        while ($fila = $marcas2->fetch_assoc()):
+        ?>
+            <option value="<?= $fila['idMarcas'] ?>"
+                <?= ($fila['idMarcas'] == $marcaEditar) ? 'selected' : '' ?>>
+                <?= $fila['marcas'] ?>
+            </option>
+        <?php endwhile; ?>
+    </select>
+
+    <div class="botones">
+        <?php if ($idEditar != ""): ?>
+            <button type="submit" name="editar">Actualizar</button>
+        <?php else: ?>
+            <button type="submit" name="guardar">Guardar</button>
+        <?php endif; ?>
+
+        <button type="reset">Cancelar</button>
+    </div>
+</form>
+
+    </section>
+
+    <!-- TABLA -->
+    <section class="tabla-box">
+        <h2>Modelos Registrados</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Modelo</th>
+                    <th>Marca</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($fila = $resultado->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= $fila['idModelo'] ?></td>
+                        <td><?= $fila['nombreModelo'] ?></td>
+                        <td><?= $fila['nombreMarca'] ?></td>
+                        <td>
+                            <a href="modelo.php?actualizar=<?= $fila['idModelo'] ?>"> Actualizar</a> 
+                            <a href="modelo.php?eliminar=<?= $fila['idModelo'] ?>" onclick="return confirm('¿Eliminar modelo?')"> Eliminar</a>
+                            
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </section>
+
+</main>
+
+
+
+ <footer>
+        <p>Derechos de autor @2025 mantenimiento de computo todos los de rechos reservados</p>
+        
+</footer>
+</body>
+ 
+</html>

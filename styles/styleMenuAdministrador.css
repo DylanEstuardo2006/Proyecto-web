@@ -83,12 +83,22 @@ section {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-aside {
+aside 
+{
     flex: 1;
-    background-color: #eaeaea;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+aside a
+{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    background-color: #00883E;
+    border-radius: 5px;
+    float: right;
+       padding: 10px;
 }
 
 footer {

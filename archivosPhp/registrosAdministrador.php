@@ -1,11 +1,15 @@
 <?php
 session_start();
 
- if($_SESSION['verificarAdministrador'] != 1)
- {
+ if($_SESSION['verificarAdministrador'] == 1)
+  {
+   
+  }
+ else
+  {
     header("Location: ../login.php");
     exit();
- }
+  }
    $nombreUsuario = $_SESSION['nombre'];
 ?>
 
@@ -23,13 +27,14 @@ session_start();
         <div class = "logo-container">
        <img src = "../imagenes/imagenLogoEmpresa/logoEmpresa.jpg" alt = "logo">
        </div>
-       <p> Bienvenido <?php echo $nombreUsuario?></p>
+       <h2> Bienvenido <?php echo $nombreUsuario?> </h2>
        <nav>
          <ul>
-         <li><a href ="menuAdministrador">Menú Administrador</a></li>
+         <li><a href ="menuAdministrador.php">Menú Administrador</a></li>
          <li><a href ="CRUDS/crudUsuario/formUsuarios.php">Usuarios</a></li>
-         <li><a href ="CRUDS/crudDispositivos/formDispositivos.php">Orden de trabajo</a></li>
-        
+         <li><a href ="CRUDS/crudDispositivos/formDispositivos.php">Dispositivos</a></li>
+         <li><a href ="CRUDS/crudMarca/Marca.php">Marcas</a></li>
+         <li><a href ="CRUDS/crudMarca/modelo.php">Modelos</a></li>
         </ul>
        </nav>
     </header>

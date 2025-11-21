@@ -1,11 +1,16 @@
 <?php
-session_start();
 include_once '../../conexion.php';
- if($_SESSION['verificarAdministrador'] != 1)
+session_start();
+ if($_SESSION['verificarAdministrador'] == 1)
  {
+    
+ }
+ else
+ { 
     header("Location: ../../../login.php");
     exit();
  }
+
  ?>   
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +37,10 @@ include_once '../../conexion.php';
     </header>
   <body> 
     <main>
+    <div class = "title-form">
     <h2>Registrar Usuario</h2>
-      <form method = "POST" action="registros.php" class = "formulario">   
+    </div>
+      <form method = "POST" action="guardar.php" class = "formulario">   
         <div class = "nombre">
         <strong>Nombre:</strong>
         <input type="text" class="txtForm" name="nombre" placeholder="Nombre" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*$"  title="Solo letras y espacios. Mínimo 2 y máximo 50 caracteres." required></p>
@@ -51,7 +58,8 @@ include_once '../../conexion.php';
       <div class ="cuenta">
         <div class="matricula">
         <strong> Matricula: </strong>
-        <input type="numbers" name="matricula" min="1" max="8" placeholder="Ingrese su matricula" required>
+        <input type= "text" name="matricula" minlength="8" 
+  maxlength="10" inputmode="numeric" placeholder="Ingrese su matricula"  pattern="^[0-9]+" title = "Solo se aceptan números" required>
         </div>
         <div class ="contrasenia">
         <strong>Contraseñia: </strong>
@@ -60,7 +68,7 @@ include_once '../../conexion.php';
       </div>
       <div class ="conocerUsuario">
         <div class ="telefono">
-        <strong>Telefono:</strong>
+        <strong>Teléfono:</strong>
         <input type="tel" name="telefono" placeholder="Teléfono" pattern="^[0-9]{10}$" title ="Solo números. Debe contener 10 dígitios" required>
         </div>
         <div class ="tipoUsuario">

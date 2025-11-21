@@ -1,3 +1,6 @@
+<?php 
+ include_once 'archivosPhp/conexion.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +15,7 @@
        <h1 class= "title">Login</h1>
            <nav>
                 <ul>
+                    <li><a href = "html/mapaDeSitio.html">Mapa de Sitio</a></li>
                     <li><a href="index.html">Menu Principal</a></li>
                     <li><a href="html/filosofiaInstitucional.html">Filosofia Escolar</a></li>
                     <li><a href="html/conoceInstitucion.html">Conoce la Institución</a></li>

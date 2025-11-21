@@ -1,6 +1,16 @@
 <?php
   include_once 'conexion.php';
+  session_start();
 
+   if($_SESSION['verificarAdministrador'] == 1)
+  {
+   
+  }
+  else 
+  {
+    header("Location: ../login.php");
+    exit();
+  }
   $idOrden = $_POST['idOrden'];
   $dispositivos = $_POST['dispositivos'];
 
@@ -13,11 +23,18 @@
       $stmt->bind_param("ii",$idOrden,$idDispositivos);
       $stmt->execute();
     }
-    echo "<h3> Orden guardada correctamente con los dispositivos seleccionados.</h3>";
+    echo "<script>
+             alert('✅ Orden guardada exitosamente.');
+             window.location='menuAdministrador.php';
+          </script>";
+    exit();
   }
   else
   {
-    echo "<h3> No seleccionaste ningún dispositivo.</h3>";
+     echo "<script>
+           alert('❌ No seleccionaste ningún dispositivo.');
+           window.location='formUsuarios.php';
+           </script>";
+    exit();
   }
 ?>
-<a href ="ordenDeTrabajo.php">Crear otra orden</a>
