@@ -2,10 +2,14 @@
 include_once 'conexion.php';
 session_start();
 
- if($_SESSION['verificarAdministrador'] != 1)
+ if($_SESSION['verificarAdministrador'] == 1)
  {
-    header("Location: ../login.php");
-    exit();
+  
+ }
+ else
+ {
+     header("Location: ../login.php");
+     exit();
  }
 
 ?>

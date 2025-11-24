@@ -1,0 +1,227 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Para que el contenido empuje hacia abajo el footer */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* El main crece y empuja el footer */
+main {
+    flex: 1;
+}
+.section-form-filtro
+{
+    display: block;
+    background-color: #fafafa;
+    box-shadow: 0 0 10px rgba(0,0,0,0.10);
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+.section-form-filtro form 
+{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.div-box-fecha, .div-box-laboratorio, .div-box-matricula
+{
+  flex: 1; /* Ocupa el espacio disponible */
+    min-width: 200px; /* Asegura que no se hagan demasiado pequeños */
+    margin: 0 10px 20px 0; /* Espacio entre ellos y debajo */
+    padding: 10px;
+}
+
+.div-box-fecha input
+{  
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.div-box-laboratorio select
+{
+     padding: 8px;
+    border-radius: 4px;
+    width: 100%; 
+}
+.div-box-matricula input 
+{
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+/* Asegura que el último div (matrícula) no tenga margen extra a la derecha */
+.section-form-filtro form > div:last-of-type {
+    margin-right: 0;
+}
+
+
+/* Estilo para el contenedor del botón (Nuevo) */
+.div-box-filtro {
+   /* Ocupa todo el ancho */
+    width: 100%; 
+    /* Esta propiedad centrará horizontalmente los elementos inline o inline-block,
+       que en este caso es el botón. */
+    text-align: center; 
+    /* Remueve el padding-left que lo alineaba a la izquierda */
+    padding-left: 0;
+}
+
+/* Estilo del botón de Filtrar (Nuevo) */
+.btn-filtrar {
+    background-color: #00883E; /* Color verde de la imagen */
+    color: white;
+    padding: 10px 35px; /* Tamaño del padding para que se vea más grande */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-filtrar:hover {
+    background-color: #005f27;
+}
+
+/* Ajuste para el estilo del dropdown (select) para que se vea como en la imagen */
+.div-box-laboratorio select {
+    appearance: none; /* Remueve estilos nativos en algunos navegadores */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+    padding-right: 30px; /* Espacio para el icono */
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+    color: #333;
+}
+
+/* ------------------------ HEADER ------------------------ */
+
+.header {
+    background-color: #00883E;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.logo {
+    width: 80px;
+}
+
+.logo-utit {
+    width: 70px;
+    border-radius: 50%;
+}
+
+/* MENU */
+.nav a {
+    margin: 0 10px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.nav a:hover {
+     background-color: #005f27;
+}
+
+/* ------------------------ TABLA ------------------------ */
+
+.contenido {
+    max-width: 1600px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: #f3f3f3;
+}
+
+/* ACCIONES */
+.btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 2px;
+    display: inline-block;
+}
+
+.accion {
+    background-color: #00883E;
+}
+
+.eliminar {
+     background-color: #00883E;
+}
+
+/* ------------------------ FOOTER ------------------------ */
+
+.footer {
+    background: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* ------------------------ RESPONSIVE ------------------------ */
+
+@media (max-width: 900px) {
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .header-left {
+        flex-direction: column;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}

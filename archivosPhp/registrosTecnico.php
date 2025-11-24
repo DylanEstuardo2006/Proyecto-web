@@ -1,7 +1,7 @@
 <?php
 session_start();
 
- if($_SESSION['verificarAdministrador'] == 1)
+ if($_SESSION['verificarAdministrador'] == 2)
   {
    
   }
@@ -30,12 +30,10 @@ session_start();
        <h2> Bienvenido <?php echo $nombreUsuario?> </h2>
        <nav>
          <ul>
-         <li><a href ="menuAdministrador.php">Menú Administrador</a></li>
-         <li><a href ="registroDeOrdenesDeTrabajo.php">Ordenes de Trabajo</a></li>
-         <li><a href ="CRUDS/crudUsuario/formUsuarios.php">Usuarios</a></li>
+         <li><a href ="menuTecnico.php">Menú Técnico</a></li>
          <li><a href ="CRUDS/crudDispositivos/Dispositivos.php">Dispositivos</a></li>
          <li><a href ="CRUDS/crudMarca/Marca.php">Marcas</a></li>
-         <li><a href ="CRUDS/crudModelo/modelo.php">Modelos</a></li>
+         <li><a href ="CRUDS/crudMarca/modelo.php">Modelos</a></li>
         </ul>
        </nav>
     </header>

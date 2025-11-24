@@ -1,6 +1,16 @@
 <?php
 require_once "../../conexion.php"; // Conexión a la base de datos
 
+session_start();
+ if($_SESSION['verificarAdministrador'] == 1 || $_SESSION['verificarAdministrador'] == 2)
+ {
+    
+ }
+ else
+ { 
+    header("Location: ../../../login.php");
+    exit();
+ }
 /* ----------------------- GUARDAR MODELO ----------------------- */
 if (isset($_POST["guardar"])) {
     $nombreModelo = $_POST["modelo"];
@@ -92,13 +102,10 @@ if (isset($_GET["eliminar"])) {
         </div>
 
         <h1>REGISTRAR MODELO</h1>
-
         <nav>
-             <a href="Mapa_de_sitio.php">MAPA DE SITIO</a>
-            <a href="MARCA.php">MARCA</a>
-            <a href="Dispositivos.php">DISPOSITIVOS</a>
-            <a href="Usuarios">USUARIOS</a>
-            <a href="Menu.php">MENU PRINCIPAL</a>
+              <a href="../../direccionador.php">Mapa de Sitio</a>
+             <a href="../../direccionadorMenu.php">Menú Principal</a>
+              <a href="../crudDispositivos/Dispositivos.php">Dispositivos</a>
         </nav>
     
 </header>

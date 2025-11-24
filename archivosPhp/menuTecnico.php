@@ -30,7 +30,7 @@ session_start();
          <ul>
          <li><a href ="mapaDeSitioTecnico.php">Mapa de Sitio</a></li>
          <li><a href ="cerrarSesion.php">Cerrar Sesión</a></li>
-         <li><a href ="Registros">Registros</a></li>    
+         <li><a href ="registrosTecnico.php">Registros</a></li>    
          </ul>
        </nav>
     </header>

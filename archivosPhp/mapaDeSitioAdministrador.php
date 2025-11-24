@@ -1,3 +1,16 @@
+<?php 
+ session_start();
+
+ if($_SESSION['verificarAdministrador'] == 1)
+ {
+  
+ }
+ else 
+ {
+    header("Location: ../login.php");
+    exit();
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +39,30 @@
               <thead>
                 <tr>
                     <th>
+                         <h3>Órden de trabajo</h3>
+                    </th>
+                </tr>    
+              </thead>
+               <tbody>
+                <tr>
+                    <td><li><a href="ordenDeTrabajo.php">Crear orden de trabajo</a></li></td>
+                </tr>
+                <tr>
+                    <td><li><a href="seleccionarLaboratorio.php">Seleccionar Laboratorio</a></li></td>
+                </tr>
+                <tr>
+                    <td><li><a href="listarDispositivos.php">Guardar orden y lista dispositivos</a></li></td>
+                </tr>
+                <tr>
+                    <td><li><a href="registroDeOrdenesDeTrabajo.php">Registro orden de trabajo</a></li></td>
+                </tr>
+                </table>
+        </section>
+          <section class ="mapa-sitio">
+           <table>
+              <thead>
+                <tr>
+                    <th>
                          <h3>Dispositivos</h3>
                     </th>
                 </tr>    
@@ -38,13 +75,15 @@
                     <td><li><a href="CRUDS/crudModelo/modelo.php">Modelo</a></li></td>
                 </tr>
                 <tr>
-                    <td><li><a href="CRUDS/crudDispositivos/formDispositivos.php">Registrar Dispositivos</a></li></td>
+                    <td><li><a href="CRUDS/crudDispositivos/Dispositivos.php">Registrar Dispositivos</a></li></td>
                 </tr>
-                    <td><li><a href="CRUDS/crudDispositivos/registros.php">Dispositivos</a></li>
+                    <td><li><a href="CRUDS/crudDispositivos/RegistroDisp.php">Dispositivos</a></li>
                 <tr>
-                    <td><li><a href="CRUDS/crudDispositivos/actualizar.php">Actualizar Dispositivos</a></li></td>
+                    <td><li><a href="CRUDS/crudDispositivos/ActualizarDisp.php">Actualizar Dispositivos</a></li></td>
+                </tr>
                 </table>
         </section>
+     
         <section class= "mapa-sitio">
             <table>
               <thead>
@@ -61,7 +100,30 @@
                 <tr>
                     <td><li><a href="CRUDS/crudUsuario/registros.php">Usuarios registrados</a></li></td>
                 </tr>
+                  <tr>
+                    <td><li><a href="CRUDS/crudUsuario/actualizar.php">Actualizar</a></li></td>
+                  </tr>
+              </tbody>
            </table>
+        </section>
+           <section class ="mapa-sitio">
+           <table>
+              <thead>
+                <tr>
+                    <th>
+                         <h3>Administrador</h3>
+                    </th>
+                </tr>    
+              </thead>
+               <tbody>
+                <tr>
+                    <td><li><a href="menuAdministrador.php">Menú Administrador</a></li></td>
+                </tr>
+                <tr>
+                    <td><li><a href="registrosAdministrador.php">Registros de Administrador</a></li></td>
+                </tr>
+               </tbody>
+                </table>
         </section>
      </div> 
     </main>

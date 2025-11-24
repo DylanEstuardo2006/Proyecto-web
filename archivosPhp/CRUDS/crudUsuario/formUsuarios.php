@@ -29,9 +29,12 @@ session_start();
            Registrar Usuario
         </div>
         <div class="header-back"> 
-          <div class ="links">   
-            <a href="../../menuAdministrador.php">Regresar</a>
-            <a href="registros.php">Ver Usuarios</a>
+          <div class ="links">
+            <a href="../../mapaDeSitioAdministrador.php">Mapa de Sitio</a>  
+            <a href="../../menuAdministrador.php">Menú Principal</a>
+            <a href ="../crudMarca/Marca.php">Marcas</a> 
+            <a href ="../crudModelo/modelo.php">Modelos</a>
+            <a href ="../crudDispositivos/dispositivos.php">Dispositivos</a>
           </div>
         </div>
     </header>
@@ -39,6 +42,7 @@ session_start();
     <main>
     <div class = "title-form">
     <h2>Registrar Usuario</h2>
+    <a href = "registros.php">Registros</a>
     </div>
       <form method = "POST" action="guardar.php" class = "formulario">   
         <div class = "nombre">

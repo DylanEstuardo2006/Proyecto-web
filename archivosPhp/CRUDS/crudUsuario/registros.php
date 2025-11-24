@@ -35,7 +35,7 @@
 
     <nav class="nav">
         <a href="../../mapaDeSitioAdministrador.php">Mapa de Sitio</a>
-        <a href="../../../index.html">Menú Principal</a>
+        <a href="../../menuAdministrador.php">Menú Administrador</a>
         <a href="formUsuarios.php">Usuarios</a>
     </nav>
 

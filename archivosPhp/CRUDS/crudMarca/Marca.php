@@ -1,6 +1,16 @@
 <?php
 require_once "../../conexion.php";
 
+session_start();
+ if($_SESSION['verificarAdministrador'] == 1 || $_SESSION['verificarAdministrador'] == 2)
+ {
+    
+ }
+ else
+ { 
+    header("Location: ../../../login.php");
+    exit();
+ }
 // GUARDAR
 if (isset($_POST["guardar"])) {
     $marca = $_POST["marcas"];
@@ -63,10 +73,9 @@ if (isset($_GET["eliminar"])) {
         <h1>REGISTRAR MARCA</h1>
         <nav>
             <a href="../../direccionador.php">Mapa De Sitio</a>
-            <a href="../../menuAdministrador.php">Menú principal</a>
-            <a href="../crudModelo/modelo.php">MODELO</a>
-            <a href=".php">DISPOSITIVOS</a>
-            <a href="../crudUsuario/formUsuarios.php">USUARIOS</a>
+            <a href="../../direccionadorMenu.php">Menú principal</a>
+            <a href="../crudModelo/modelo.php">Modelo</a>
+            <a href="../crudDispositivos/Dispositivos.php">Dispositivos</a>
         </nav> 
     </header>
 
