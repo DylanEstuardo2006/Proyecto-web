@@ -15,6 +15,7 @@ $condiciones = [];
 $parametros = [];
 
 // FILTROS OPCIONALES
+
 if (!empty($_GET['matricula'])) {
     $condiciones[] = "usuarios.matricula LIKE ?";
     $parametros[] = "%" . $_GET['matricula'] . "%";
@@ -33,6 +34,8 @@ if (!empty($_GET['idLaboratorio'])) {
 // BASE QUERY CORRECTA
 $sql = " SELECT 
     ordendetrabajo.idOrdenDeTrabajo,
+    ordendetrabajo.idUsuario,
+    dispositivos.idDispositivo,
     ordendetrabajo.fechaDeCreacion,
     usuarios.matricula,
     dispositivos.nombreDispositivo,
@@ -68,6 +71,9 @@ if (!empty($parametros)) {
 
 $stmt->execute();
 $resultado = $stmt->get_result();
+
+?>
+<?php
 
 ?>
 <!DOCTYPE html>
@@ -136,11 +142,9 @@ $resultado = $stmt->get_result();
                 <th>Acciones</th>
             </tr>
         </thead>
-
         <tbody>
         <?php while ($orden= $resultado->fetch_assoc()): ?>
             <tr>
-
                 <td><?= $orden['laboratorio'] ?></td>
                 <td><?= $orden['fechaDeCreacion'] ?></td>
                 <td><?= $orden['matricula'] ?></td>
@@ -149,12 +153,18 @@ $resultado = $stmt->get_result();
                 <td><?= $orden['estado'] ?></td>
                 <td><?= $orden['realizadoMantenimiento'] ?></td>
         
-                <td>
-                    <a class="btn accion" href="estado.php?id=<?= $orden['idOrdenDeTrabajo'] ?>">Estado</a>
-                    <a class="btn eliminar" 
-                       href="realizadoMantenimiento.php?id=<?= $orden['idOrdenDeTrabajo'] ?>">
-                       Realizado
-                    </a>
+                <td class = "form-acciones"> 
+                <form action ="estado.php" method= "POST">
+                    <input type="hidden" name="idOrdenDeTrabajo" value="<?php echo $orden['idOrdenDeTrabajo'] ?> ">
+                    <input type="hidden" name="idUsuario" value="<?php echo $orden['idUsuario'] ?>">
+                    <button type="submit" class ="btn-acciones" onclick="return confirm('¿Desea poner el estado en ACEPTADO?')"> Estado </button>
+                </form>
+                 <form action ="realizado.php" METHOD = "POST" class = "form-acciones">
+                    <input type="hidden" name="idOrden" value="<?php echo $orden['idOrdenDeTrabajo'] ?> ">
+                    <input type="hidden" name="estado" value="<?php echo $orden['estado'] ?> ">
+                    <input type="hidden" name="idUsuario" value="<?php echo $orden['idUsuario'] ?>">
+                    <button type="submit"  class ="btn-acciones" onclick="return confirm('¿Desea poner el mantenimiento como REALIZADO?')"> Realizado </button>
+                </form>
                 </td>
             </tr>
         <?php endwhile; ?>

@@ -15,7 +15,7 @@
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
     $idOrden = $_POST['idOrdenDeTrabajo'];
-    $estado = "aceptado";
+    $estado = $_POST['estado'];
     $idUsuario = $_POST['idUsuario'];
 
     //Consulta para saber si el estado ya esta aceptado esa orden

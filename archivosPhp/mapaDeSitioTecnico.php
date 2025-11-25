@@ -46,7 +46,7 @@ session_start();
               </thead>
                <tbody>
                 <tr>
-                    <td><li><a href="CRUDS/crudDispositivos/registros.php">Dispositivos</a></li></td>
+                    <td><li><a href="CRUDS/crudDispositivos/RegistroDisp.php">Dispositivos</a></li></td>
                 </tr>
                 <tr>
                     <td><li><a href="CRUDS/crudMarca/Marca.php">Marca</a></li></td>
@@ -55,7 +55,7 @@ session_start();
                     <td><li><a href="CRUDS/crudModelo/modelo.php">Modelo</a></li></td>
                 </tr>
                 <tr>
-                    <td><li><a href="CRUDS/crudDispositivos/formDispositivos.php">Registrar Dispositivos</a></li></td>
+                    <td><li><a href="CRUDS/crudDispositivos/Dispositivos.php">Registrar Dispositivos</a></li></td>
                 </tr>
                 <tr>
                     <td><li><a href="CRUDS/crudDispositivos/ActualizarDisp.php">Actualizar Dispositivos</a></li></td>
