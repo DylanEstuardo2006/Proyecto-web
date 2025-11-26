@@ -1,3 +1,11 @@
+<?php 
+  include_once '../archivosPhp/conexion.php';
+
+  $sql = "SELECT * FROM novedades";
+  $resultado = $conn-> query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,33 +33,24 @@
 
     <div class="novedades-container">
         <div class="novedades-main">
-            <!-- Noticia 1 -->
+            <?php while ($novedades = $resultado->fetch_assoc()): ?>
+            <!-- Noticias -->
             <article class="noticia-card">
                 <div class="noticia-imagen">
-                    <img src="../imagenes/imagenNoticia1/noticia1.jpg" alt="noticia1" width="200 px">
+                    <img src="<?php echo  $novedades['imagen']; ?>" alt="noticia1" width="200 px">
                 </div>
                 <div class="noticia-contenido">
-                    <h2>Mantenimiento preventivo de laboratorios – Diciembre 2025</h2>
-                    <p class="fecha">14 de noviembre, 2025</p>
-                    <p>El área de Mantenimiento TIC informa que durante la próxima semana se llevará a cabo el mantenimiento preventivo de los equipos en los Laboratorios de Cómputo A, B y C.</p>
-                    <a href="novedad.html" class="btn-leer-mas">Leer más</a>
-                </div>
-            </article>
 
-            <!-- Noticia 2 -->
-            <article class="noticia-card">
-                <div class="noticia-imagen">
-                    <img src="../imagenes/imagenNoticia2/noticia2.jpg" alt="noticia2" width="200 px">
-                </div>
-                <div class="noticia-contenido">
-                    <h2>Instalación de nuevo software institucional</h2>
-                    <p class="fecha">13 de noviembre, 2025</p>
-                    <p>Se instalará el sistema actualizado de control de inventarios en los equipos administrativos. La instalación será automática al iniciar sesión.</p>
-                    <a href="novedad.html" class="btn-leer-mas">Leer más</a>
+                    <h2><?php  echo $novedades['tituloNovedad'] ?></h2>
+                    <p class="fecha"><?php echo $novedades['fecha'] ?></p>
+                    <p><?php echo $novedades['encabezado'] ?> </p>
+                    <a class="btn-leer-mas" href="novedad.php?id=<?= $novedades['idNovedades'] ?>">Leer más</a>
                 </div>
             </article>
+            <?php endwhile; ?>
         </div>
 
+        
         <aside class="redes-sociales-sidebar">
             <h2>Redes sociales</h2>
             <div class="red-social-item">

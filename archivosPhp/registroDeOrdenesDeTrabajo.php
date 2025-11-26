@@ -160,8 +160,8 @@ $resultado = $stmt->get_result();
                     <button type="submit" class ="btn-acciones" onclick="return confirm('¿Desea poner el estado en ACEPTADO?')"> Estado </button>
                 </form>
                  <form action ="realizado.php" METHOD = "POST" class = "form-acciones">
-                    <input type="hidden" name="idOrden" value="<?php echo $orden['idOrdenDeTrabajo'] ?> ">
-                    <input type="hidden" name="estado" value="<?php echo $orden['estado'] ?> ">
+                    <input type="hidden" name="idOrdenDeTrabajo" value="<?php echo $orden['idOrdenDeTrabajo'] ?> ">
+                    <input type="hidden" name="estado" value="<?php echo $orden['estado'] ?>">
                     <input type="hidden" name="idUsuario" value="<?php echo $orden['idUsuario'] ?>">
                     <button type="submit"  class ="btn-acciones" onclick="return confirm('¿Desea poner el mantenimiento como REALIZADO?')"> Realizado </button>
                 </form>

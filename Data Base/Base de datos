@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2025 a las 22:50:26
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.1.25
+-- Host: 127.0.0.1
+-- Generation Time: Nov 26, 2025 at 06:40 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `mantenimientocomputo`
+-- Database: `mantenimientocomputo`
 --
 CREATE DATABASE IF NOT EXISTS `mantenimientocomputo` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `mantenimientocomputo`;
@@ -26,7 +26,7 @@ USE `mantenimientocomputo`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dispositivos`
+-- Table structure for table `dispositivos`
 --
 
 CREATE TABLE IF NOT EXISTS `dispositivos` (
@@ -40,26 +40,26 @@ CREATE TABLE IF NOT EXISTS `dispositivos` (
   KEY `fk_dispositivo_laboratorio` (`idLaboratorio`),
   KEY `fk_dispositivo_modelos` (`idModelo`),
   KEY `fk_dispositivo_tipoDispositivo` (`idTipoDispositivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `dispositivos`
+-- Dumping data for table `dispositivos`
 --
 
 INSERT INTO `dispositivos` (`idDispositivo`, `idLaboratorio`, `idModelo`, `idTipoDispositivo`, `nombreDispositivo`, `numeroInventario`) VALUES
 (1, 1, 6, 7, 'LabD1MSIModern156', 55513457890),
 (2, 2, 13, 7, 'LabD2HpEliteBook13', 55214209087),
 (3, 1, 13, 7, 'LabD1HpEliteBook13', 55617268290),
-(4, 3, 12, 7, 'LabD3VictusbyHp12', 55572817829),
 (5, 1, 11, 7, 'LabD1OmenByHp11', 55827819283),
 (6, 2, 5, 7, 'LabD2MSIStealth16Studio5', 55671887627),
 (7, 4, 2, 7, 'LabD4MSIKatana2', 55918290322),
-(8, 1, 4, 7, 'LabD1MSICyborg15-4', 55529838172);
+(8, 1, 4, 7, 'LabD1MSICyborg15-4', 55529838172),
+(9, 3, 14, 2, 'D3RealmeBudsAir6pro1', 55561722883);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `laboratorios`
+-- Table structure for table `laboratorios`
 --
 
 CREATE TABLE IF NOT EXISTS `laboratorios` (
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `laboratorios` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `laboratorios`
+-- Dumping data for table `laboratorios`
 --
 
 INSERT INTO `laboratorios` (`idLaboratorio`, `laboratorios`) VALUES
@@ -81,17 +81,17 @@ INSERT INTO `laboratorios` (`idLaboratorio`, `laboratorios`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `marca`
+-- Table structure for table `marca`
 --
 
 CREATE TABLE IF NOT EXISTS `marca` (
   `idMarcas` int(20) NOT NULL AUTO_INCREMENT,
   `marcas` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idMarcas`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `marca`
+-- Dumping data for table `marca`
 --
 
 INSERT INTO `marca` (`idMarcas`, `marcas`) VALUES
@@ -102,12 +102,14 @@ INSERT INTO `marca` (`idMarcas`, `marcas`) VALUES
 (5, 'Acer'),
 (6, 'Asus'),
 (7, 'MSI'),
-(9, 'Epson');
+(9, 'Epson'),
+(10, 'Sony'),
+(11, 'Realme');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `modelos`
+-- Table structure for table `modelos`
 --
 
 CREATE TABLE IF NOT EXISTS `modelos` (
@@ -116,10 +118,10 @@ CREATE TABLE IF NOT EXISTS `modelos` (
   `idMarca` int(20) DEFAULT NULL,
   PRIMARY KEY (`idModelo`),
   KEY `idMarca` (`idMarca`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `modelos`
+-- Dumping data for table `modelos`
 --
 
 INSERT INTO `modelos` (`idModelo`, `modelos`, `idMarca`) VALUES
@@ -133,14 +135,40 @@ INSERT INTO `modelos` (`idModelo`, `modelos`, `idMarca`) VALUES
 (8, 'HP Envy', 2),
 (9, 'Hp Essential', 2),
 (10, 'HP Chromebook', 2),
-(11, 'OMEN by Hp', 2),
+(11, 'OMEN By Hp', 2),
 (12, 'Victus by HP ', 2),
-(13, 'Hp EliteBook', 2);
+(13, 'Hp EliteBook', 2),
+(14, 'Realme Buids Air 6 pro', 11);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ordendetrabajo`
+-- Table structure for table `novedades`
+--
+
+CREATE TABLE IF NOT EXISTS `novedades` (
+  `idNovedades` int(20) NOT NULL AUTO_INCREMENT,
+  `tituloNovedad` varchar(30) DEFAULT NULL,
+  `encabezado` varchar(300) DEFAULT NULL,
+  `fecha` varchar(40) DEFAULT NULL,
+  `informacion` varchar(1500) DEFAULT NULL,
+  `nombre` int(45) DEFAULT NULL,
+  `imagen` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idNovedades`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `novedades`
+--
+
+INSERT INTO `novedades` (`idNovedades`, `tituloNovedad`, `encabezado`, `fecha`, `informacion`, `nombre`, `imagen`) VALUES
+(1, 'Mantenimiento preventivo de la', 'El área de Mantenimiento TIC informa que durante la próxima semana se llevará a cabo el mantenimiento preventivo de los equipos en los Laboratorios de Cómputo A, B y C.', '14 de Noviembre, 2025', '  El área de Mantenimiento TIC informa que durante la semana del 17 al 22 de noviembre se realizará el mantenimiento preventivo semestral de los equipos de cómputo en los Laboratorios A, B y C.                                  El objetivo es garantizar el correcto funcionamiento de los equipos utilizados por estudiantes y docentes durante el cuatrimestre.                                   Durante el mantenimiento se realizarán las siguientes tareas:', 0, 'imagenesNovedades//1764126067_noticia1.jpg'),
+(2, 'Instalación de nuevo software ', 'Se instalará el sistema actualizado de control de inventarios en los equipos administrativos. La instalación será automática al iniciar sesión.', '13 de noviembre, 2025', 'Se instalará el sistema actualizado de control de inventarios en los equipos administrativos. La instalación será automática al iniciar sesión. Esto permitira a los encargados del área tener un control mas preciso sobre los inventarios disponibles ', 0, 'imagenesNovedades/1764130471_noticia2.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ordendetrabajo`
 --
 
 CREATE TABLE IF NOT EXISTS `ordendetrabajo` (
@@ -155,22 +183,28 @@ CREATE TABLE IF NOT EXISTS `ordendetrabajo` (
   PRIMARY KEY (`idOrdenDeTrabajo`),
   KEY `fk_usuarios_ordendeTrabajo` (`idUsuario`),
   KEY `fk_tipoMantenimiento_ordendetrabajo` (`idTipoMantenimiento`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `ordendetrabajo`
+-- Dumping data for table `ordendetrabajo`
 --
 
 INSERT INTO `ordendetrabajo` (`idOrdenDeTrabajo`, `idTipoMantenimiento`, `idUsuario`, `estado`, `realizadoMantenimiento`, `insumos`, `horasHombres`, `fechaDeCreacion`) VALUES
 (13, 1, 1, 'espera', 'proceso', 'Se necesitaran 100 ml de alcohol, algodón ', '10', '2025-11-13'),
 (14, 1, 1, 'espera', 'proceso', 'Se necesitaran 100 ml de alcohol, algodón ', '10', '2025-11-14'),
 (15, 1, 1, 'espera', 'proceso', 'Se necesitara espuma limpiadora de 400g y una toalla para limpiar las superficies', '20', '2025-11-14'),
-(16, 1, 2, 'espera', 'proceso', 'Se necesitara de alcohol para la limpieza de los dispositivos', '10', '2025-11-14');
+(16, 1, 2, 'espera', 'proceso', 'Se necesitara de alcohol para la limpieza de los dispositivos', '10', '2025-11-14'),
+(17, 1, 1, 'aceptado', 'realizado', 'Se ocupara alcohol isopropílico', '25', '2025-11-18'),
+(18, 2, 1, 'espera', 'proceso', 'Se ocupara alcohol isopropílico, solución limpiadora y un pañuel', '30', '2025-11-18'),
+(19, 2, 1, 'espera', 'proceso', 'Se ocupara alcohol isopropílico, solución limpiadora y un pañuel', '30', '2025-11-18'),
+(20, 1, 1, 'espera', 'proceso', 'Se ocupara alcohol isopropílico, solución limpiadora y un pañuelo ', '30', '2025-11-19'),
+(21, 2, 1, 'aceptado', 'realizado', 'Se necesitara de una Ram de Repuesto', '25', '2025-11-24'),
+(22, 1, 1, 'espera', 'proceso', 'Para limpiar o reparar se usara alcohol isopropílico, aire comprimido y herramientas ESD.', '40', '2025-11-25');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `orden_dispositivos`
+-- Table structure for table `orden_dispositivos`
 --
 
 CREATE TABLE IF NOT EXISTS `orden_dispositivos` (
@@ -181,19 +215,24 @@ CREATE TABLE IF NOT EXISTS `orden_dispositivos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `orden_dispositivos`
+-- Dumping data for table `orden_dispositivos`
 --
 
 INSERT INTO `orden_dispositivos` (`idOrdenDeTrabajo`, `idDispositivo`) VALUES
 (NULL, 1),
 (NULL, 3),
 (16, 2),
-(16, 6);
+(16, 6),
+(17, 7),
+(19, NULL),
+(19, NULL),
+(21, 9),
+(22, 9);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -203,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`idRoles`, `roles`) VALUES
@@ -213,7 +252,7 @@ INSERT INTO `roles` (`idRoles`, `roles`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipodispositivo`
+-- Table structure for table `tipodispositivo`
 --
 
 CREATE TABLE IF NOT EXISTS `tipodispositivo` (
@@ -223,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `tipodispositivo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `tipodispositivo`
+-- Dumping data for table `tipodispositivo`
 --
 
 INSERT INTO `tipodispositivo` (`idTipoDispositivo`, `tipoDispositivo`) VALUES
@@ -238,7 +277,7 @@ INSERT INTO `tipodispositivo` (`idTipoDispositivo`, `tipoDispositivo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipomantenimiento`
+-- Table structure for table `tipomantenimiento`
 --
 
 CREATE TABLE IF NOT EXISTS `tipomantenimiento` (
@@ -248,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `tipomantenimiento` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `tipomantenimiento`
+-- Dumping data for table `tipomantenimiento`
 --
 
 INSERT INTO `tipomantenimiento` (`idTipoMantenimiento`, `tipoMantenimiento`) VALUES
@@ -258,7 +297,7 @@ INSERT INTO `tipomantenimiento` (`idTipoMantenimiento`, `tipoMantenimiento`) VAL
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -272,22 +311,23 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `idRoles` int(20) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`),
   KEY `fk_usuarios_roles` (`idRoles`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellidoPaterno`, `apellidoMaterno`, `matricula`, `contrasenia`, `telefono`, `idRoles`) VALUES
 (1, 'Dylan Estuardo', 'Flores', 'Sagahón ', 20240989, 'S4GUNDACUENTAXD', 7713482463, 1),
-(2, 'Yessica', 'Palacios', 'Hernández', 20240985, 'yessicaHernandez', 7712420954, 1);
+(2, 'Yessica', 'Palacios', 'Hernández', 20240985, 'yessicaHernandez', 7712420954, 1),
+(3, 'Emiliana', 'Hernández', 'Hernández', 20241085, 'emiliana2006', 7713487316, 2);
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `dispositivos`
+-- Constraints for table `dispositivos`
 --
 ALTER TABLE `dispositivos`
   ADD CONSTRAINT `fk_dispositivo_laboratorio` FOREIGN KEY (`idLaboratorio`) REFERENCES `laboratorios` (`idLaboratorio`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -295,27 +335,27 @@ ALTER TABLE `dispositivos`
   ADD CONSTRAINT `fk_dispositivo_tipoDispositivo` FOREIGN KEY (`idTipoDispositivo`) REFERENCES `tipodispositivo` (`idTipoDispositivo`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `modelos`
+-- Constraints for table `modelos`
 --
 ALTER TABLE `modelos`
   ADD CONSTRAINT `modelos_ibfk_1` FOREIGN KEY (`idMarca`) REFERENCES `marca` (`idMarcas`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `ordendetrabajo`
+-- Constraints for table `ordendetrabajo`
 --
 ALTER TABLE `ordendetrabajo`
   ADD CONSTRAINT `fk_tipoMantenimiento_ordendetrabajo` FOREIGN KEY (`idTipoMantenimiento`) REFERENCES `tipomantenimiento` (`idTipoMantenimiento`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_usuarios_ordendeTrabajo` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `orden_dispositivos`
+-- Constraints for table `orden_dispositivos`
 --
 ALTER TABLE `orden_dispositivos`
   ADD CONSTRAINT `fk_idDispositivos_IdOrdeDispositivos` FOREIGN KEY (`idDispositivo`) REFERENCES `dispositivos` (`idDispositivo`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `fk_idOrden_IdOrdeDispositivos` FOREIGN KEY (`idOrdenDeTrabajo`) REFERENCES `ordendetrabajo` (`idOrdenDeTrabajo`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Filtros para la tabla `usuarios`
+-- Constraints for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `fk_usuarios_roles` FOREIGN KEY (`idRoles`) REFERENCES `roles` (`idRoles`) ON DELETE SET NULL ON UPDATE CASCADE;

@@ -48,14 +48,14 @@
         </div>
              <h3> <?php if($idOrden === null){ echo 'No se ha creado una Orden de Trabajo'; }else { echo 'Selecciona el laboratorio para la orden #'. $idOrden;}  ?></h3>
          <div class="header-back">
-            <a href="ordenDeTrabajo.php">Regresar</a>
+            <a href="ordenDeTrabajo.php" title = "Botón de Regresar">Regresar</a>
         </div>
         </header>
      <main>
         <section>
           <h4>Selecciona el laboratorio:</h4>
          <form method = "get" action = "listarDispositivos.php">
-            <select name= "idLaboratorio" required>
+            <select name= "idLaboratorio" title = "Selecciona el Laboratorio" required>
                 <option value = "">Selecciona un laboratorio</option>
                 <?php
                      $labs = $conn->query("SELECT * FROM laboratorios");

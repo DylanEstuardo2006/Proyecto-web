@@ -19,18 +19,18 @@
                     <li><a href="index.html">Menu Principal</a></li>
                     <li><a href="html/filosofiaInstitucional.html">Filosofia Escolar</a></li>
                     <li><a href="html/conoceInstitucion.html">Conoce la Institución</a></li>
-                    <li><a href="html/novedades.html">Novedades</a></li>
+                    <li><a href="html/novedades.php">Novedades</a></li>
                 </ul>
           </nav>
    </header>
     <main>
         <section>
             <h2>Iniciar Sesión</h2>
-                <form action="archivosPhp/iniciarSesion.php" method="POST">
+                <form action="archivosPhp/iniciarSesion.php" method="POST" autocomplete="off">
                     <label for="username">Usuario:</label>
-                    <input type="text"  class = "txtIniciarSesion" name="matricula" required><br><br> 
+                    <input type="text"  class = "txtIniciarSesion" name="matricula" title= "Ingrese su matricula"required><br><br> 
                     <label for="password">Contraseña:</label>
-                    <input type="password" class = "txtIniciarSesion"  name="contrasenia" required><br><br>
+                    <input type="password" class = "txtIniciarSesion"  name="contrasenia" autocomplete="new-password" title = "Ingrese contraseña" required><br><br>
                  
                     <label for="username">Tipo de usuario:</label>
                      <select name = "tipoUsuario">
@@ -44,7 +44,7 @@
                            }
                            ?>
                     </select>
-                    <input type="submit" class = "button" value= "Iniciar Sesión">
+                    <input type="submit" class = "button" value= "Iniciar Sesión" title ="Botón de Iniciar sesión">
                   </form>
         </section>
          <aside>

@@ -31,10 +31,10 @@ session_start();
        <h1> Bienvenido <?php echo $nombreUsuario?> </h1>
        <nav>
          <ul>
-         <li><a href ="cerrarSesion.php">Cerrar Sesión</a></li>
-         <li><a href ="mapaDeSitioAdministrador.php">Mapa De Sitio</a></li>
-         <li><a href ="ordenDeTrabajo.php">Orden de trabajo</a></li>
-         <li><a href ="registrosAdministrador.php">Registros</a></li>    
+         <li><a href ="cerrarSesion.php" title = "Cerrar la sesión del usuario logeado"  onclick="return confirm('¿Desea cerrar su sesión ?')" >Cerrar Sesión</a></li>
+         <li><a href ="mapaDeSitioAdministrador.php" title ="Mapa de Sitio">Mapa De Sitio</a></li>
+         <li><a href ="ordenDeTrabajo.php" title ="Crear Orden de Trabajo">Orden de trabajo</a></li>
+         <li><a href ="registrosAdministrador.php" title = "Menú de Registros del administrador ">Registros</a></li>    
          </ul>
        </nav>
     </header>

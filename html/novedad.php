@@ -1,3 +1,26 @@
+<?php 
+include_once '../archivosPhp/conexion.php';
+if (isset($_GET['id']))
+ {
+    $id = $_GET['id'];
+    
+    // Usar prepared statement
+    $sql = "SELECT * FROM novedades WHERE  idNovedades = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    if ($resultado->num_rows > 0) {
+        $novedades = $resultado->fetch_assoc();
+    } else {
+        exit;
+    }
+} else {
+    echo 
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,18 +48,17 @@
 
     <div class="detalle-container">
         <article class="noticia-completa">
-            <h1>Mantenimiento preventivo de laboratorios – Diciembre 2025</h1>
+            <h1><?php  echo $novedades['tituloNovedad'] ?></h1>
             
             <div class="noticia-imagen-grande">
-                <img src="../imagenes/imagenNoticia1/noticia1.jpg" alt="noticia1" width="400">
+                <img src="<?php echo  $novedades['imagen']; ?>" alt="noticia1" width="400">
             </div>
 
             <div class="noticia-contenido">
-                <p>El área de Mantenimiento TIC informa que durante la semana del 17 al 22 de noviembre se realizará el mantenimiento preventivo semestral de los equipos de cómputo en los Laboratorios A, B y C.</p>
-                
-                <p>El objetivo es garantizar el correcto funcionamiento de los equipos utilizados por estudiantes y docentes durante el cuatrimestre.</p>
-                
-                <p> Durante el mantenimiento se realizarán las siguientes tareas:</p>
+
+                    <p class="fecha"><?php echo $novedades['fecha'] ?></p>
+                    <p><?php echo $novedades['encabezado'] ?> </p>
+                    <p><?php echo $novedades['informacion'] ?> </p>
             </div>
 
         </article>

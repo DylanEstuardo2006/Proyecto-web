@@ -15,32 +15,31 @@
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
     $idOrden = $_POST['idOrdenDeTrabajo'];
-    $estado = $_POST['estado'];
+    $estado = strtolower(trim($_POST['estado']));
+    $realizado = "realizado";
     $idUsuario = $_POST['idUsuario'];
 
-    //Consulta para saber si el estado ya esta aceptado esa orden
+    //Consulta para saber si el estado ya esta aceptado esa orden 
 
-    $consulta = $conn->query("SELECT * FROM ordendetrabajo WHERE idOrdenDeTrabajo = $idOrden AND estado = '$estado' AND idUsuario = '$idUsuario'");
-     
-if ($consulta->num_rows > 0) 
-{
-     echo "<script>
-                alert('La orden de trabajo estaba aceptada');
-                window.location.href='registroDeOrdenesDeTrabajo.php';
-              </script>";
-    exit();
-}
+    if("aceptado" !== $estado) 
+    {
+      echo "<script>
+              alert('No se puede realizar un mantenimiento que no ha sido aceptado');
+              window.location.href='registroDeOrdenesDeTrabajo.php';
+            </script>";
+      exit();
+    }
     //Consulta para actualizar el estado
 
-    $sqlUpdate = "UPDATE ordendetrabajo SET estado = ? WHERE idOrdenDeTrabajo = ?";   
+    $sqlUpdate = "UPDATE ordendetrabajo SET realizadoMantenimiento = ? WHERE idOrdenDeTrabajo = ?";   
    
     $stmt = $conn->prepare($sqlUpdate);
-    $stmt->bind_param("si",$estado,$idOrden);
+    $stmt->bind_param("si",$realizado,$idOrden);
     
     if($stmt->execute())
     {
         echo "<script>
-                alert('Orden Trabajo aceptada');
+                alert('Orden Trabajo: Mantenimiento Realizado');
                 window.location.href='registroDeOrdenesDeTrabajo.php';
               </script>";
         exit;
